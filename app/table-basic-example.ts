@@ -40,12 +40,6 @@ export class TableBasicExample implements OnInit {
     { position: 10, name: "Neon", weight: "20.1797", symbol: "Ne" }
   ];
 
-  SCHEMA: any[] = [
-    { name: "position", head: "No.", fixed: false },
-    { name: "name", head: "Name", fixed: false },
-    { name: "weight", head: "Weigth", fixed: false },
-    { name: "symbol", head: "Symbol", fixed: false }
-  ];
   filterControl = new FormControl();
   displayedColumns: string[] = ["name", "weight", "symbol"];
 
@@ -54,9 +48,6 @@ export class TableBasicExample implements OnInit {
   public weight = "";
   public symbol = "";
   public dataSource = new MatTableDataSource([]);
-  schema: any[];
-  editRowId: number = -1;
-  @ViewChildren(MatInput, { read: ElementRef }) inputs: QueryList<ElementRef>;
   constructor(private dataService: DataService) {}
 
   getFilterPredicate() {
@@ -113,7 +104,6 @@ export class TableBasicExample implements OnInit {
     });
 
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-    this.schema = this.SCHEMA;
     this.dataSource.filterPredicate = this.getFilterPredicate();
   }
 }
